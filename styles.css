@@ -137,11 +137,19 @@ h3 {
 .paper-title-main {
   max-width: 1160px;
   margin: 0 auto 1rem;
-  font-size: clamp(2.8rem, 5.2vw, 4.85rem);
+  font-size: clamp(2.4rem, 4.5vw, 4rem); 
   line-height: 1.02;
   font-weight: 600;
   text-align: center;
   text-wrap: balance;
+}
+
+.gradient-title {
+  background: linear-gradient(135deg, #1d5f8c 0%, #b87333 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; 
 }
 
 .authors,
@@ -152,12 +160,26 @@ h3 {
 }
 
 .authors {
-  font-size: 1.12rem;
+  font-size: 1.35rem; 
+  font-weight: 600;
+}
+
+.authors a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 150ms ease, text-decoration 150ms ease;
+}
+
+.authors a:hover,
+.authors a:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 .affiliations {
   margin-top: 0.35rem;
-  font-size: 1rem;
+  font-size: 1.15rem; 
+  font-weight: 600;
 }
 
 .authors sup,
@@ -586,7 +608,7 @@ h2.single-line-desktop {
   }
 
   .paper-title-main {
-    font-size: clamp(2.15rem, 9vw, 3.3rem);
+    font-size: clamp(1.9rem, 8vw, 2.8rem);
   }
 
   h2 {
@@ -594,6 +616,6 @@ h2.single-line-desktop {
   }
 
   .authors {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 }
