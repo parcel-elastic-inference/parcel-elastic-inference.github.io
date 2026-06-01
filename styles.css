@@ -10,7 +10,7 @@
   --accent-soft: #eef4fa;
   --shadow: 0 12px 36px rgba(24, 33, 44, 0.06);
   --max-width: 1340px;
-  --text-width: 1160px;
+  --text-width: 1210px;
   --radius: 22px;
 }
 
@@ -137,6 +137,9 @@ h3 {
 .paper-title-main {
   max-width: 1160px;
   margin: 0 auto 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-size: clamp(2.8rem, 5.2vw, 4.85rem);
   line-height: 1.02;
   font-weight: 600;
@@ -146,6 +149,8 @@ h3 {
 
 .desktop-title-line {
   display: block;
+  width: fit-content;
+  max-width: 100%;
   white-space: nowrap;
 }
 
@@ -277,12 +282,20 @@ p {
 .section-lede {
   margin-top: 0.7rem;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1.12rem;
+  line-height: 1.62;
   text-wrap: pretty;
 }
 
 .single-line-desktop {
+  display: inline-block;
+  max-width: 100%;
   white-space: nowrap;
+}
+
+h2.single-line-desktop {
+  font-size: clamp(1.9rem, 2.75vw, 2.72rem);
+  letter-spacing: -0.01em;
 }
 
 .abstract-panel {
@@ -290,7 +303,8 @@ p {
   margin: 0 auto;
   padding: 0.2rem 0;
   color: var(--muted);
-  font-size: 1.08rem;
+  font-size: 1.14rem;
+  line-height: 1.72;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -345,7 +359,7 @@ p {
 .feature-figure figcaption {
   padding: 1rem 0.15rem 0.1rem;
   color: var(--muted);
-  font-size: 0.98rem;
+  font-size: 1.06rem;
   line-height: 1.55;
 }
 
@@ -414,7 +428,8 @@ p {
   grid-template-columns: 0.75fr repeat(4, minmax(0, 1fr));
   gap: 0.45rem 0.55rem;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 1.12rem;
+  line-height: 1.45;
 }
 
 .efficiency-grid p {
@@ -424,7 +439,7 @@ p {
 .efficiency-grid p:nth-child(-n + 5) {
   color: var(--ink);
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.79rem;
+  font-size: 0.82rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -448,6 +463,8 @@ p {
 
 .spotlight-card p {
   color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.58;
 }
 
 .info-card,
@@ -462,6 +479,8 @@ p {
 .result-card p,
 .citation-copy p {
   color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.58;
 }
 
 .result-card h3 {
@@ -537,6 +556,7 @@ p {
 
   .desktop-title-line {
     display: inline;
+    width: auto;
     white-space: normal;
   }
 }
@@ -563,6 +583,7 @@ p {
   }
 
   .paper-title-main {
+    display: block;
     font-size: clamp(2.15rem, 9vw, 3.3rem);
   }
 

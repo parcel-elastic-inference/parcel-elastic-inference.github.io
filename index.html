@@ -141,8 +141,8 @@
               <p>
                 Existing elastic LVLM compression methods fail in opposite
                 ways under aggressive budgets. Spatial-only pooling blurs detail
-                through aliasing, while query-only resampling weakens dense
-                spatial grounding.
+                through aliasing, while query-only resampling weakens spatial
+                relationships.
               </p>
             </article>
             <article class="info-card">
@@ -167,14 +167,13 @@
         <section id="method" class="section-card reveal">
           <div class="section-header wider-copy">
             <p class="eyebrow">Method</p>
-            <h2>
-              Pool-Conditioned Query Resampling conditions elastic queries on
-              pooled spatial anchors.
+            <h2 class="single-line-desktop">
+              Pool-Conditioned Query Resampling conditions elastic queries on pooled spatial anchors.
             </h2>
             <p class="section-lede">
-              The pooled anchor branch preserves low-frequency layout first, so
-              the query pathway can spend its capacity on complementary visual
-              detail rather than reconstructing coarse structure from scratch.
+              The pooled anchors preserve the low-frequency layout, so the
+              explorer query tokens can spend their capacity on complementary
+              visual detail.
             </p>
           </div>
 
@@ -246,7 +245,9 @@
         <section id="routing" class="section-card reveal">
           <div class="section-header">
             <p class="eyebrow">Budget-Aware Routing</p>
-            <h2>The anchor-query split is adjusted as the total token budget changes.</h2>
+            <h2 class="single-line-desktop">
+              The anchor-query split is adjusted as the total token budget changes.
+            </h2>
             <p class="section-lede">
               PARCEL uses the piecewise routing rule described in the paper:
               low budgets keep a 4x4 anchor grid, while medium-to-high budgets
@@ -305,7 +306,9 @@
         <section class="section-card reveal">
           <div class="section-header">
             <p class="eyebrow">Spectral Analysis</p>
-            <h2>Frequency analysis supports the separation between anchors and conditioned queries.</h2>
+            <h2 class="single-line-desktop">
+              Frequency analysis supports the separation between anchors and conditioned queries.
+            </h2>
             <p class="section-lede">
               The architecture is not only intuitive at the design level; its
               anchor-query decomposition is also reflected in measurable
@@ -374,7 +377,7 @@
             </figure>
 
             <aside class="efficiency-panel" aria-label="Compact efficiency table">
-              <p class="efficiency-title">Visual Tokens versus Resources</p>
+              <p class="efficiency-title">Visual Tokens versus Computational Resources</p>
               <div class="efficiency-grid">
                 <p>Budget</p>
                 <p>Image FLOPs</p>
@@ -406,7 +409,7 @@
           <div class="spotlight-grid">
             <article class="spotlight-card">
               <span class="result-label">Dense Recognition</span>
-              <h3>Up to +6.1 over MQT</h3>
+              <h3>Up to +6.1 over baselines</h3>
               <p>
                 Across the RefCOCO suite, PARCEL keeps explicit spatial anchors
                 and reaches its largest retention advantage at 64 tokens, while
@@ -415,7 +418,7 @@
             </article>
             <article class="spotlight-card">
               <span class="result-label">Video Aggregate</span>
-              <h3>Up to +5.4 over M<sup>3</sup></h3>
+              <h3>Up to +5.4 over baselines</h3>
               <p>
                 PARCEL reaches 98.0%, 97.9%, and 95.0% retention on the video
                 aggregate, with its largest margin appearing at the 64-token
@@ -424,7 +427,7 @@
             </article>
             <article class="spotlight-card">
               <span class="result-label">Resolution-Sensitive</span>
-              <h3>Up to +8.4 over M<sup>3</sup></h3>
+              <h3>Up to +8.4 over baselines</h3>
               <p>
                 On the top-3 resolution-sensitive tasks, including ChartQA and
                 DocVQA, PARCEL reaches 90.8%, 90.0%, and 77.1% retention
@@ -433,7 +436,7 @@
             </article>
             <article class="spotlight-card">
               <span class="result-label">ChartQA (Human)</span>
-              <h3>Up to +3.4 over M<sup>3</sup></h3>
+              <h3>Up to +3.4 over baselines</h3>
               <p>
                 PARCEL reaches 37.2 at 256 tokens, 37.0 at 64, and 32.0 at 16,
                 consistently improving over both elastic baselines on this
@@ -442,7 +445,7 @@
             </article>
             <article class="spotlight-card">
               <span class="result-label">DocVQA (Val)</span>
-              <h3>Up to +3.4 over M<sup>3</sup></h3>
+              <h3>Up to +3.4 over baselines</h3>
               <p>
                 On document question answering, PARCEL reaches 32.1 at 64
                 tokens and 26.1 at 16, improving over the baselines in the
@@ -451,7 +454,7 @@
             </article>
             <article class="spotlight-card">
               <span class="result-label">MSR-VTT-Cap</span>
-              <h3>Up to +5.5 over M<sup>3</sup></h3>
+              <h3>Up to +5.5 over baselines</h3>
               <p>
                 On this key video-captioning benchmark, PARCEL improves from
                 68.6 at 256 tokens to 68.9 at 64 and still holds 66.7 at 16,
