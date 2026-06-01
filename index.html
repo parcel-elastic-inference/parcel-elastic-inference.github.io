@@ -33,8 +33,8 @@
         <section class="masthead reveal">
           <p class="venue-line">arXiv 2026</p>
           <h1 class="paper-title-main">
-            <span class="desktop-title-line">PARCEL: Pool-Anchored Resampling</span>
-            <span class="desktop-title-line">with Conditioned Elastic Queries for</span>
+            <span class="desktop-title-line">PARCEL: Pool-Anchored Resampling </span><br class="desktop-title-break" />
+            <span class="desktop-title-line">with Conditioned Elastic Queries for </span><br class="desktop-title-break" />
             <span class="desktop-title-line">Efficient Vision-Language Understanding</span>
           </h1>
           <p class="authors">
@@ -168,7 +168,7 @@
           <div class="section-header wider-copy">
             <p class="eyebrow">Method</p>
             <h2 class="single-line-desktop">
-              Pool-Conditioned Query Resampling conditions elastic queries on pooled spatial anchors.
+              Pool-Conditioned Query Resampling conditions queries on spatial anchors.
             </h2>
             <p class="section-lede">
               The pooled anchors preserve the low-frequency layout, so the
@@ -307,7 +307,7 @@
           <div class="section-header">
             <p class="eyebrow">Spectral Analysis</p>
             <h2 class="single-line-desktop">
-              Frequency analysis supports the separation between anchors and conditioned queries.
+              Frequency analysis highlights the "division of labor".
             </h2>
             <p class="section-lede">
               The architecture is not only intuitive at the design level; its
@@ -353,9 +353,9 @@
         </section>
 
         <section id="results" class="section-card reveal">
-          <div class="section-header">
+          <div class="section-header wider-copy">
             <p class="eyebrow">Results</p>
-            <h2>PARCEL improves the efficiency-retention frontier across image and video benchmarks.</h2>
+            <h2 class="single-line-desktop">PARCEL improves the efficiency-retention frontier across image and video benchmarks.</h2>
             <p class="section-lede">
               Across 27 benchmarks, PARCEL improves the aggregate
               retention-efficiency trade-off while remaining compatible with the
@@ -409,56 +409,54 @@
           <div class="spotlight-grid">
             <article class="spotlight-card">
               <span class="result-label">Dense Recognition</span>
-              <h3>Up to +6.1 over baselines</h3>
+              <h3>Up to +8.9 over baselines</h3>
               <p>
-                Across the RefCOCO suite, PARCEL keeps explicit spatial anchors
-                and reaches its largest retention advantage at 64 tokens, while
-                also improving by up to +8.9 points over M<sup>3</sup>.
+                Across the RefCOCO suite, PARCEL improves over both MQT and
+                M<sup>3</sup> baselines, with gains reaching up to +8.9 points
+                over M<sup>3</sup>.
               </p>
             </article>
             <article class="spotlight-card">
               <span class="result-label">Video Aggregate</span>
-              <h3>Up to +5.4 over baselines</h3>
+              <h3>Up to +4.4 over baselines</h3>
               <p>
                 PARCEL reaches 98.0%, 97.9%, and 95.0% retention on the video
-                aggregate, with its largest margin appearing at the 64-token
-                budget.
+                aggregate, compared to second-best baseline retentions of
+                94.4%, 93.5%, and 94.0%.
               </p>
             </article>
             <article class="spotlight-card">
               <span class="result-label">Resolution-Sensitive</span>
-              <h3>Up to +8.4 over baselines</h3>
+              <h3>Up to +3.8 over baselines</h3>
               <p>
                 On the top-3 resolution-sensitive tasks, including ChartQA and
                 DocVQA, PARCEL reaches 90.8%, 90.0%, and 77.1% retention
-                across 256, 64, and 16 tokens.
+                across 256, 64, and 16 tokens, while the second-best baseline
+                reaches 90.0%, 86.2%, and 75.5%.
               </p>
             </article>
             <article class="spotlight-card">
               <span class="result-label">ChartQA (Human)</span>
-              <h3>Up to +3.4 over baselines</h3>
+              <h3>Up to +2.9 over baselines</h3>
               <p>
-                PARCEL reaches 37.2 at 256 tokens, 37.0 at 64, and 32.0 at 16,
-                consistently improving over both elastic baselines on this
-                chart-reasoning benchmark.
+                PARCEL improves over the second-best baseline by +1.6, +2.9,
+                and +1.3 points at 256, 64, and 16 tokens.
               </p>
             </article>
             <article class="spotlight-card">
-              <span class="result-label">DocVQA (Val)</span>
-              <h3>Up to +3.4 over baselines</h3>
+              <span class="result-label">ActivityNet-QA</span>
+              <h3>Up to +1.5 over baselines</h3>
               <p>
-                On document question answering, PARCEL reaches 32.1 at 64
-                tokens and 26.1 at 16, improving over the baselines in the
-                compression-sensitive regime.
+                PARCEL improves over the second-best baseline by +0.9, +1.5,
+                and +0.2 points at 256, 64, and 16 tokens.
               </p>
             </article>
             <article class="spotlight-card">
               <span class="result-label">MSR-VTT-Cap</span>
-              <h3>Up to +5.5 over baselines</h3>
+              <h3>Up to +4.4 over baselines</h3>
               <p>
-                On this key video-captioning benchmark, PARCEL improves from
-                68.6 at 256 tokens to 68.9 at 64 and still holds 66.7 at 16,
-                outperforming both elastic baselines.
+                PARCEL improves over the second-best baseline by +1.8, +4.4,
+                and +1.0 points at 256, 64, and 16 tokens.
               </p>
             </article>
           </div>

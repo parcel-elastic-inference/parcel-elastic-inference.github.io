@@ -137,9 +137,6 @@ h3 {
 .paper-title-main {
   max-width: 1160px;
   margin: 0 auto 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-size: clamp(2.8rem, 5.2vw, 4.85rem);
   line-height: 1.02;
   font-weight: 600;
@@ -148,10 +145,12 @@ h3 {
 }
 
 .desktop-title-line {
-  display: block;
-  width: fit-content;
-  max-width: 100%;
+  display: inline;
   white-space: nowrap;
+}
+
+.desktop-title-break {
+  display: block;
 }
 
 .authors,
@@ -397,7 +396,7 @@ h2.single-line-desktop {
 }
 
 .results-hero {
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  grid-template-columns: minmax(0, 0.82fr) auto;
   align-items: start;
 }
 
@@ -407,16 +406,19 @@ h2.single-line-desktop {
 }
 
 .efficiency-panel {
-  padding: 0.95rem 1rem;
+  justify-self: start;
+  width: max-content;
+  max-width: 100%;
+  padding: 0.82rem 0.95rem;
   border: 1px solid var(--line);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.72);
   box-shadow: var(--shadow);
-  overflow-x: hidden;
+  overflow-x: auto;
 }
 
 .efficiency-title {
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
   color: var(--ink);
   font-family: "Crimson Text", serif;
   font-size: 1.35rem;
@@ -425,8 +427,8 @@ h2.single-line-desktop {
 
 .efficiency-grid {
   display: grid;
-  grid-template-columns: 0.75fr repeat(4, minmax(0, 1fr));
-  gap: 0.45rem 0.55rem;
+  grid-template-columns: repeat(5, max-content);
+  gap: 0.2rem 1rem;
   color: var(--muted);
   font-size: 1.12rem;
   line-height: 1.45;
@@ -434,6 +436,7 @@ h2.single-line-desktop {
 
 .efficiency-grid p {
   margin: 0;
+  white-space: nowrap;
 }
 
 .efficiency-grid p:nth-child(-n + 5) {
@@ -459,6 +462,18 @@ h2.single-line-desktop {
 
 .spotlight-card h3 {
   margin-bottom: 0.4rem;
+  font-size: 1.34rem;
+}
+
+.spotlight-card .result-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 .spotlight-card p {
@@ -556,8 +571,11 @@ h2.single-line-desktop {
 
   .desktop-title-line {
     display: inline;
-    width: auto;
     white-space: normal;
+  }
+
+  .desktop-title-break {
+    display: none;
   }
 }
 
@@ -583,7 +601,6 @@ h2.single-line-desktop {
   }
 
   .paper-title-main {
-    display: block;
     font-size: clamp(2.15rem, 9vw, 3.3rem);
   }
 
