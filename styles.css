@@ -136,7 +136,7 @@ h3 {
 
 .paper-title-main {
   max-width: 1160px;
-  margin: 0 auto 1.8rem;
+  margin: 0 auto 3.2rem; /* Increased margin for much more breathing room */
   font-size: clamp(2.4rem, 4.5vw, 4rem); 
   line-height: 1.02;
   font-weight: 600;
@@ -383,7 +383,8 @@ h2.single-line-desktop {
 .two-up,
 .method-grid,
 .results-grid,
-.citation-layout {
+.citation-layout,
+.results-hero {
   display: grid;
   gap: 1.15rem;
 }
@@ -400,12 +401,6 @@ h2.single-line-desktop {
 .results-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 1.25rem;
-}
-
-.results-hero,
-.spotlight-grid {
-  display: grid;
-  gap: 1.15rem;
 }
 
 .results-hero {
@@ -463,21 +458,27 @@ h2.single-line-desktop {
   text-transform: uppercase;
 }
 
+/* 6-Column Grid Approach for Perfect Alignment */
 .spotlight-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.15rem;
   margin-top: 1.25rem;
 }
 
-.spotlight-grid.bottom-row {
-  display: flex;
-  justify-content: center;
-  gap: 1.15rem;
-  margin-top: 1.15rem; 
+/* Top row cards span 2 columns each */
+.spotlight-card:nth-child(1),
+.spotlight-card:nth-child(2),
+.spotlight-card:nth-child(3) {
+  grid-column: span 2;
 }
 
-.spotlight-grid.bottom-row .spotlight-card {
-  flex: 0 1 calc(33.333% - 0.77rem); 
-  width: 100%;
+/* Bottom row cards span 2 columns and push in to center perfectly */
+.spotlight-card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+.spotlight-card:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 
 .spotlight-card {
@@ -593,12 +594,9 @@ h2.single-line-desktop {
     grid-template-columns: 1fr;
   }
 
-  .spotlight-grid.bottom-row {
-    flex-direction: column;
-  }
-  
-  .spotlight-grid.bottom-row .spotlight-card {
-    max-width: 100%;
+  /* Force all cards to span the full width on smaller screens */
+  .spotlight-grid .spotlight-card {
+    grid-column: 1 / -1;
   }
 
   .single-line-desktop {
