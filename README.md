@@ -65,6 +65,7 @@ parcel-elastic-inference.github.io/
 ├── script.js
 ├── styles.css
 └── assets/
+    ├── gifs/
     └── figures/
 ```
 

@@ -152,6 +152,28 @@
           </figure>
         </section>
 
+        <section id="animations" class="section alt reveal">
+          <div class="section-heading">
+            <p class="eyebrow">Animated Overview</p>
+            <h2>Elastic inference is easiest to understand when you watch the budget change.</h2>
+          </div>
+
+          <figure class="feature-figure wide">
+            <img
+              class="animated-media"
+              src="assets/gifs/elastic-inference.gif"
+              alt="Animated overview of elastic inference with PARCEL across tasks and token budgets."
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Elastic inference with a single trained model.</strong>
+              This walkthrough makes the central deployment story concrete:
+              PARCEL can adapt visual-token budgets across different tasks
+              without retraining the model for each operating point.
+            </figcaption>
+          </figure>
+        </section>
+
         <section class="section alt reveal">
           <div class="section-heading">
             <p class="eyebrow">Design Motivation</p>
@@ -204,14 +226,17 @@
           <div class="method-layout">
             <figure class="feature-figure">
               <img
-                src="assets/figures/parcel-architecture.png"
-                alt="High-level overview of the PARCEL architecture."
+                class="animated-media"
+                src="assets/gifs/pcqr-animation.gif"
+                alt="Animated explanation of Pool-Conditioned Query Resampling in PARCEL."
+                loading="lazy"
               />
               <figcaption>
-                <strong>PARCEL architecture.</strong>
-                Uncompressed visual features are pooled into 2D anchors, then
-                used to condition elastic queries that become targeted semantic
-                explorers over the full-resolution feature grid.
+                <strong>Pool-Conditioned Query Resampling in motion.</strong>
+                The anchor tokens first establish spatial structure, then the
+                conditioned queries become targeted semantic explorers over the
+                full-resolution feature grid rather than redundant layout
+                encoders.
               </figcaption>
             </figure>
 
@@ -290,6 +315,60 @@
               <strong>+3.4 points at 256 tokens</strong> over
               M<sup>3</sup>.
             </p>
+          </div>
+        </section>
+
+        <section id="routing" class="section reveal">
+          <div class="section-heading">
+            <p class="eyebrow">Budget Routing</p>
+            <h2>Anchor resolution and query capacity should scale with the budget, not stay fixed.</h2>
+          </div>
+
+          <div class="routing-layout">
+            <figure class="feature-figure">
+              <img
+                class="animated-media"
+                src="assets/gifs/budget-routing.gif"
+                alt="Animated explanation of budget-aware routing in PARCEL."
+                loading="lazy"
+              />
+              <figcaption>
+                <strong>Budget-aware routing.</strong>
+                PARCEL changes the division between pooled anchors and query
+                tokens as the total visual-token budget changes, instead of
+                forcing one fixed compression pattern everywhere.
+              </figcaption>
+            </figure>
+
+            <div class="method-points">
+              <article class="detail-card">
+                <span class="detail-index">A</span>
+                <h3>At 16 tokens</h3>
+                <p>
+                  The model falls back to a severe anchor budget and preserves a
+                  usable compressed visual base even in the most constrained
+                  setting.
+                </p>
+              </article>
+              <article class="detail-card">
+                <span class="detail-index">B</span>
+                <h3>At 64 tokens</h3>
+                <p>
+                  PARCEL expands the spatial anchor so the model does not waste
+                  query capacity reconstructing structural detail that could
+                  have been preserved directly.
+                </p>
+              </article>
+              <article class="detail-card">
+                <span class="detail-index">C</span>
+                <h3>At 256 tokens</h3>
+                <p>
+                  Once the anchor base is sufficiently rich, the semantic
+                  explorer queries activate on top to recover complementary
+                  fine-grained information.
+                </p>
+              </article>
+            </div>
           </div>
         </section>
 

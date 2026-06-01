@@ -345,6 +345,13 @@ h3 {
   background: #fff;
 }
 
+.animated-media {
+  width: 100%;
+  aspect-ratio: 1920 / 900;
+  object-fit: cover;
+  background: #fff;
+}
+
 .feature-figure figcaption,
 .mini-figure figcaption {
   padding: 1rem;
@@ -388,6 +395,12 @@ h3 {
 .quote-band p {
   margin: 0;
   font-size: 1.04rem;
+}
+
+.routing-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 1rem;
 }
 
 .results-grid {
@@ -480,6 +493,7 @@ h3 {
 @media (max-width: 980px) {
   .hero,
   .method-layout,
+  .routing-layout,
   .citation-layout,
   .overview-layout,
   .triptych,
