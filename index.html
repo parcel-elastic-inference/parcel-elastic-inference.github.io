@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -21,278 +21,294 @@
       <header class="site-header">
         <a class="brand" href="#top">PARCEL</a>
         <nav class="site-nav" aria-label="Primary">
-          <a href="#overview">Overview</a>
+          <a href="#abstract">Abstract</a>
+          <a href="#teaser">Teaser</a>
           <a href="#method">Method</a>
           <a href="#results">Results</a>
-          <a href="#citation">Citation</a>
+          <a href="#citation">BibTeX</a>
         </nav>
       </header>
 
       <main id="top">
-        <section class="hero reveal">
-          <div class="hero-copy">
-            <p class="eyebrow">Efficient Vision-Language Understanding</p>
-            <h1>
-              Pool-anchored token compression that keeps spatial grounding and
-              fine-grained detail in balance.
-            </h1>
-            <p class="hero-summary">
-              PARCEL introduces a hybrid visual tokenization architecture for
-              LVLMs that splits the work between deterministic 2D anchors and
-              pool-conditioned semantic explorer queries. The result is a
-              stronger performance-efficiency frontier across 27 benchmarks and
-              visual-token budgets from 16 to 256 tokens.
+        <section class="masthead reveal">
+          <p class="venue-line">arXiv 2026</p>
+          <h1 class="paper-title-main">
+            PARCEL: Pool-Anchored Resampling with Conditioned Elastic Queries
+            for Efficient Vision-Language Understanding
+          </h1>
+          <p class="authors">
+            Selim Kuzucu, Alessio Tonioni, Vasile Lup, Bernt Schiele, Federico
+            Tombari, Muhammad Ferjad Naeem
+          </p>
+          <p class="affiliations">
+            Max Planck Institute for Informatics · Google · Technical University
+            of Munich
+          </p>
+
+          <div class="action-row">
+            <a
+              class="button primary"
+              href="https://arxiv.org/pdf/2605.30126v1"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Paper
+            </a>
+            <a
+              class="button"
+              href="https://arxiv.org/html/2605.30126"
+              target="_blank"
+              rel="noreferrer"
+            >
+              arXiv HTML
+            </a>
+            <a class="button" href="#citation">BibTeX</a>
+            <span class="button ghost" aria-disabled="true">Code soon</span>
+          </div>
+        </section>
+
+        <section id="abstract" class="section-card reveal">
+          <div class="section-header centered">
+            <p class="eyebrow">Abstract</p>
+            <h2>Abstract</h2>
+          </div>
+          <div class="abstract-panel">
+            <p>
+              Large Vision-Language Models (LVLMs) map visual inputs into dense
+              token sequences, imposing a quadratic computational bottleneck for
+              inference. Elastic visual-token compression addresses this by
+              training a single model that can run at multiple visual-token
+              budgets. However, existing approaches struggle under aggressive
+              compression. Spatial-only compression induces spectral aliasing
+              that obscures fine-grained detail, while query-only compression
+              sacrifices explicit grid-aligned spatial structure. PARCEL
+              resolves this conflict by establishing pooled spatial tokens as
+              low-frequency layout anchors and conditioning elastic query tokens
+              on these anchors through Pool-Conditioned Query Resampling. Across
+              27 benchmarks, PARCEL improves the performance-efficiency Pareto
+              frontier over prior elastic baselines while preserving the “train
+              once, deploy anywhere” paradigm.
             </p>
-
-            <div class="hero-meta">
-              <p class="paper-title">
-                PARCEL: Pool-Anchored Resampling with Conditioned Elastic
-                Queries for Efficient Vision-Language Understanding
-              </p>
-              <p class="authors">
-                Selim Kuzucu, Alessio Tonioni, Vasile Lup, Bernt Schiele,
-                Federico Tombari, Muhammad Ferjad Naeem
-              </p>
-              <p class="venue">arXiv:2605.30126v1 · May 28, 2026</p>
-            </div>
-
-            <div class="action-row">
-              <a
-                class="button primary"
-                href="https://arxiv.org/pdf/2605.30126v1"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Paper
-              </a>
-              <a
-                class="button"
-                href="https://arxiv.org/html/2605.30126"
-                target="_blank"
-                rel="noreferrer"
-              >
-                arXiv HTML
-              </a>
-              <a class="button" href="#citation">BibTeX</a>
-              <span class="button ghost" aria-disabled="true">Code soon</span>
-            </div>
           </div>
-
-          <aside class="hero-panel">
-            <div class="metric-grid">
-              <article class="metric-card">
-                <span class="metric-label">Benchmarks</span>
-                <strong>27</strong>
-                <p>Video, dense grounding, OCR, chart, document, and VQA tasks.</p>
-              </article>
-              <article class="metric-card">
-                <span class="metric-label">Token Budgets</span>
-                <strong>16 → 256</strong>
-                <p>One model, multiple inference budgets, no retraining.</p>
-              </article>
-              <article class="metric-card">
-                <span class="metric-label">Global Retention</span>
-                <strong>95.6%</strong>
-                <p>Overall mean retention at 256 tokens in the main suite.</p>
-              </article>
-              <article class="metric-card">
-                <span class="metric-label">64-Token Retention</span>
-                <strong>95.3%</strong>
-                <p>Maintains strong quality at a much tighter compute budget.</p>
-              </article>
-            </div>
-          </aside>
         </section>
 
-        <section id="overview" class="section reveal">
-          <div class="section-heading">
-            <p class="eyebrow">Why PARCEL</p>
-            <h2>The compression trade-off is not one-dimensional.</h2>
+        <section id="teaser" class="section-card reveal">
+          <div class="section-header">
+            <p class="eyebrow">Teaser</p>
+            <h2>Elastic inference across tasks and visual-token budgets.</h2>
+            <p class="section-lede">
+              A single PARCEL checkpoint can be deployed at multiple operating
+              points, spanning aggressive 16-token compression up to richer
+              256-token inference.
+            </p>
           </div>
 
-          <div class="overview-layout">
-            <div class="story-card">
-              <h3>The problem</h3>
-              <p>
-                Existing elastic LVLM compression methods break in opposite
-                ways under aggressive budgets. Spatial-only pooling blurs
-                detail through aliasing, while query-only resampling weakens
-                dense spatial grounding.
-              </p>
-            </div>
-            <div class="story-card">
-              <h3>The idea</h3>
-              <p>
-                PARCEL creates a deliberate division of labor: pooled 2D anchor
-                tokens hold onto low-frequency layout, while pool-aware query
-                tokens recover complementary visual detail from the full feature
-                grid.
-              </p>
-            </div>
-            <div class="story-card">
-              <h3>The payoff</h3>
-              <p>
-                Across 27 benchmarks, PARCEL shifts the Pareto frontier,
-                outperforming M<sup>3</sup> and MQT at matched budgets while
-                preserving the “train once, deploy anywhere” deployment story.
-              </p>
-            </div>
-          </div>
-
-          <figure class="feature-figure wide">
-            <img
-              src="assets/figures/pareto-tradeoff.png"
-              alt="Aggregate retention-efficiency trade-off for PARCEL."
-            />
-            <figcaption>
-              <strong>Aggregate retention-efficiency trade-off.</strong>
-              PARCEL improves mean retention over 27 benchmarks while scaling
-              cleanly across image and video compute budgets.
-            </figcaption>
-          </figure>
-        </section>
-
-        <section id="animations" class="section alt reveal">
-          <div class="section-heading">
-            <p class="eyebrow">Animated Overview</p>
-            <h2>Elastic inference is easiest to understand when you watch the budget change.</h2>
-          </div>
-
-          <figure class="feature-figure wide">
+          <figure class="media-figure wide-media hero-media">
             <img
               class="animated-media"
               src="assets/gifs/elastic-inference.gif"
               alt="Animated overview of elastic inference with PARCEL across tasks and token budgets."
-              loading="lazy"
             />
             <figcaption>
-              <strong>Elastic inference with a single trained model.</strong>
-              This walkthrough makes the central deployment story concrete:
-              PARCEL can adapt visual-token budgets across different tasks
-              without retraining the model for each operating point.
+              <strong>Overview of elastic inference.</strong> PARCEL supports a
+              single training recipe while exposing multiple deployment
+              operating points, from severe 16-token compression to richer
+              256-token inference.
             </figcaption>
           </figure>
         </section>
 
-        <section class="section alt reveal">
-          <div class="section-heading">
-            <p class="eyebrow">Design Motivation</p>
-            <h2>Three connector styles, three very different failure modes.</h2>
+        <section id="overview" class="section-card reveal">
+          <div class="section-header">
+            <p class="eyebrow">Overview</p>
+            <h2>PARCEL separates spatial anchoring from semantic exploration.</h2>
+            <p class="section-lede">
+              Existing elastic LVLM compression methods typically fail by
+              overcommitting to one of these roles. PARCEL explicitly splits
+              them across pooled anchors and conditioned query tokens.
+            </p>
           </div>
 
-          <div class="triptych">
-            <figure class="mini-figure">
-              <img
-                src="assets/figures/m3-overview.png"
-                alt="M3 overview from the paper."
-              />
-              <figcaption>
-                <strong>M<sup>3</sup></strong>
-                Successive spatial pooling gives structure, but can wash out
-                fine-grained detail under heavy compression.
-              </figcaption>
-            </figure>
-            <figure class="mini-figure">
-              <img
-                src="assets/figures/mqt-overview.png"
-                alt="MQT overview from the paper."
-              />
-              <figcaption>
-                <strong>MQT</strong>
-                Query-only resampling is flexible, but it weakens explicit
-                grid-aligned grounding.
-              </figcaption>
-            </figure>
-            <figure class="mini-figure">
-              <img
-                src="assets/figures/parcel-overview.png"
-                alt="PARCEL overview from the paper."
-              />
-              <figcaption>
-                <strong>PARCEL</strong>
-                Spatial anchors and conditioned queries cooperate instead of
-                competing for the same representational job.
-              </figcaption>
-            </figure>
+          <div class="three-up">
+            <article class="info-card">
+              <h3>Observation</h3>
+              <p>
+                Existing elastic LVLM compression methods fail in opposite
+                ways under aggressive budgets. Spatial-only pooling blurs detail
+                through aliasing, while query-only resampling weakens dense
+                spatial grounding.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Design</h3>
+              <p>
+                PARCEL divides the work explicitly: pooled 2D anchors preserve
+                low-frequency layout, and pool-aware query tokens recover
+                complementary visual detail from the full feature grid.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Effect</h3>
+              <p>
+                Across 27 benchmarks, PARCEL shifts the Pareto frontier,
+                outperforming M<sup>3</sup> and MQT at matched budgets while
+                retaining the practical “train once, deploy anywhere” story.
+              </p>
+            </article>
           </div>
         </section>
 
-        <section id="method" class="section reveal">
-          <div class="section-heading">
+        <section id="method" class="section-card reveal">
+          <div class="section-header">
             <p class="eyebrow">Method</p>
-            <h2>Pool-Conditioned Query Resampling makes queries spatially aware before they explore.</h2>
+            <h2>Pool-Conditioned Query Resampling conditions elastic queries on pooled spatial anchors.</h2>
+            <p class="section-lede">
+              The pooled anchor branch preserves low-frequency layout first, so
+              the query pathway can spend its capacity on complementary visual
+              detail rather than reconstructing coarse structure from scratch.
+            </p>
           </div>
 
-          <div class="method-layout">
-            <figure class="feature-figure">
-              <img
-                class="animated-media"
-                src="assets/gifs/pcqr-animation.gif"
-                alt="Animated explanation of Pool-Conditioned Query Resampling in PARCEL."
-                loading="lazy"
-              />
-              <figcaption>
-                <strong>Pool-Conditioned Query Resampling in motion.</strong>
-                The anchor tokens first establish spatial structure, then the
-                conditioned queries become targeted semantic explorers over the
-                full-resolution feature grid rather than redundant layout
-                encoders.
-              </figcaption>
-            </figure>
+          <figure class="media-figure wide-media">
+            <img
+              class="animated-media"
+              src="assets/gifs/pcqr-animation.gif"
+              alt="Animated explanation of Pool-Conditioned Query Resampling in PARCEL."
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Pool-Conditioned Query Resampling in motion.</strong>
+              The anchor tokens establish spatial structure first; conditioned
+              queries then become targeted semantic explorers instead of
+              redundant layout encoders.
+            </figcaption>
+          </figure>
 
-            <div class="method-points">
-              <article class="detail-card">
-                <span class="detail-index">01</span>
-                <h3>2D Anchors</h3>
-                <p>
-                  Budget-aware pooling creates deterministic spatial anchors
-                  that preserve low-frequency geometry and explicit layout.
-                </p>
-              </article>
-              <article class="detail-card">
-                <span class="detail-index">02</span>
-                <h3>Pool-Aware Queries</h3>
-                <p>
-                  Learnable query tokens first attend to the anchors, so they
-                  no longer need to infer coarse layout from scratch.
-                </p>
-              </article>
-              <article class="detail-card">
-                <span class="detail-index">03</span>
-                <h3>Semantic Explorers</h3>
-                <p>
-                  The conditioned queries cross-attend to the full ViT features
-                  to recover complementary details that the pooled grid drops.
-                </p>
-              </article>
-              <article class="detail-card">
-                <span class="detail-index">04</span>
-                <h3>Budget-Aware Routing</h3>
-                <p>
-                  PARCEL dynamically scales anchor size and query count so the
-                  model stays useful at both severe and generous budgets.
-                </p>
-              </article>
-            </div>
+          <div class="method-grid">
+            <article class="info-card">
+              <span class="detail-index">01</span>
+              <h3>2D Anchors</h3>
+              <p>
+                Budget-aware pooling creates deterministic spatial anchors that
+                preserve low-frequency geometry and explicit layout.
+              </p>
+            </article>
+            <article class="info-card">
+              <span class="detail-index">02</span>
+              <h3>Pool-Aware Queries</h3>
+              <p>
+                Query tokens first attend to the anchors, so they no longer
+                need to infer coarse layout from scratch.
+              </p>
+            </article>
+            <article class="info-card">
+              <span class="detail-index">03</span>
+              <h3>Semantic Explorers</h3>
+              <p>
+                The conditioned queries cross-attend to the full ViT features
+                to recover complementary details that the pooled grid drops.
+              </p>
+            </article>
+            <article class="info-card">
+              <span class="detail-index">04</span>
+              <h3>Budget-Aware Routing</h3>
+              <p>
+                PARCEL dynamically scales anchor size and query count so the
+                model stays effective across both severe and generous budgets.
+              </p>
+            </article>
+          </div>
+
+          <figure class="feature-figure">
+            <img
+              src="assets/figures/parcel-architecture.png"
+              alt="High-level overview of the PARCEL architecture."
+            />
+            <figcaption>
+              <strong>Architecture overview.</strong> Uncompressed visual
+              features are pooled into 2D anchors, then used to condition
+              elastic queries that become targeted semantic explorers over the
+              full-resolution feature grid.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="routing" class="section-card reveal">
+          <div class="section-header">
+            <p class="eyebrow">Budget-Aware Routing</p>
+            <h2>The anchor-query split is adjusted as the total token budget changes.</h2>
+            <p class="section-lede">
+              PARCEL does not keep a fixed compression recipe across all
+              budgets. Instead, it redistributes capacity between spatial
+              anchors and elastic queries as the available token count changes.
+            </p>
+          </div>
+
+          <figure class="media-figure wide-media">
+            <img
+              class="animated-media"
+              src="assets/gifs/budget-routing.gif"
+              alt="Animated explanation of budget-aware routing in PARCEL."
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Budget-aware routing.</strong> PARCEL changes the
+              division between pooled anchors and query tokens as the available
+              visual-token budget changes.
+            </figcaption>
+          </figure>
+
+          <div class="three-up">
+            <article class="info-card">
+              <span class="detail-index">A</span>
+              <h3>At 16 tokens</h3>
+              <p>
+                The model falls back to a severe anchor budget and preserves a
+                usable compressed visual base even in the tightest setting.
+              </p>
+            </article>
+            <article class="info-card">
+              <span class="detail-index">B</span>
+              <h3>At 64 tokens</h3>
+              <p>
+                PARCEL expands the anchor so query capacity is not wasted
+                reconstructing structure that could have been preserved
+                directly.
+              </p>
+            </article>
+            <article class="info-card">
+              <span class="detail-index">C</span>
+              <h3>At 256 tokens</h3>
+              <p>
+                Once the anchor base is sufficiently rich, semantic explorer
+                queries activate on top to recover complementary fine-grained
+                information.
+              </p>
+            </article>
           </div>
         </section>
 
-        <section class="section alt reveal">
-          <div class="section-heading">
+        <section class="section-card reveal">
+          <div class="section-header">
             <p class="eyebrow">Spectral Analysis</p>
-            <h2>The architecture is backed by measurable frequency separation.</h2>
+            <h2>Frequency analysis supports the separation between anchors and conditioned queries.</h2>
+            <p class="section-lede">
+              The architecture is not only intuitive at the design level; its
+              anchor-query decomposition is also reflected in measurable
+              spectral behavior.
+            </p>
           </div>
 
-          <div class="spectral-grid">
+          <div class="two-up">
             <figure class="feature-figure">
               <img
                 src="assets/figures/baseband-concentration.png"
                 alt="Baseband concentration plot from the paper."
               />
               <figcaption>
-                <strong>Baseband concentration.</strong>
-                PARCEL concentrates compressed spatial tokens in the low
-                frequencies more cleanly than M<sup>3</sup>.
+                <strong>Baseband concentration.</strong> PARCEL concentrates
+                compressed spatial tokens in the low frequencies more cleanly
+                than M<sup>3</sup>.
               </figcaption>
             </figure>
             <figure class="feature-figure">
@@ -301,9 +317,9 @@
                 alt="Spectral decoupling figure from the paper."
               />
               <figcaption>
-                <strong>Spectral disentanglement.</strong>
-                On ChartQA, the pool tokens capture layout while the query
-                pathway keeps access to higher-frequency detail.
+                <strong>Spectral disentanglement.</strong> On ChartQA, the pool
+                tokens capture layout while the query pathway keeps access to
+                higher-frequency detail.
               </figcaption>
             </figure>
           </div>
@@ -312,99 +328,61 @@
             <p>
               On ChartQA, this separation aligns with gains of
               <strong>+4.7 points at 64 tokens</strong> and
-              <strong>+3.4 points at 256 tokens</strong> over
-              M<sup>3</sup>.
+              <strong>+3.4 points at 256 tokens</strong> over M<sup>3</sup>.
             </p>
           </div>
         </section>
 
-        <section id="routing" class="section reveal">
-          <div class="section-heading">
-            <p class="eyebrow">Budget Routing</p>
-            <h2>Anchor resolution and query capacity should scale with the budget, not stay fixed.</h2>
-          </div>
-
-          <div class="routing-layout">
-            <figure class="feature-figure">
-              <img
-                class="animated-media"
-                src="assets/gifs/budget-routing.gif"
-                alt="Animated explanation of budget-aware routing in PARCEL."
-                loading="lazy"
-              />
-              <figcaption>
-                <strong>Budget-aware routing.</strong>
-                PARCEL changes the division between pooled anchors and query
-                tokens as the total visual-token budget changes, instead of
-                forcing one fixed compression pattern everywhere.
-              </figcaption>
-            </figure>
-
-            <div class="method-points">
-              <article class="detail-card">
-                <span class="detail-index">A</span>
-                <h3>At 16 tokens</h3>
-                <p>
-                  The model falls back to a severe anchor budget and preserves a
-                  usable compressed visual base even in the most constrained
-                  setting.
-                </p>
-              </article>
-              <article class="detail-card">
-                <span class="detail-index">B</span>
-                <h3>At 64 tokens</h3>
-                <p>
-                  PARCEL expands the spatial anchor so the model does not waste
-                  query capacity reconstructing structural detail that could
-                  have been preserved directly.
-                </p>
-              </article>
-              <article class="detail-card">
-                <span class="detail-index">C</span>
-                <h3>At 256 tokens</h3>
-                <p>
-                  Once the anchor base is sufficiently rich, the semantic
-                  explorer queries activate on top to recover complementary
-                  fine-grained information.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section id="results" class="section reveal">
-          <div class="section-heading">
+        <section id="results" class="section-card reveal">
+          <div class="section-header">
             <p class="eyebrow">Results</p>
-            <h2>Better global retention, stronger dense grounding, and more robust low-budget behavior.</h2>
+            <h2>PARCEL improves the efficiency-retention frontier across image and video benchmarks.</h2>
+            <p class="section-lede">
+              Across 27 benchmarks, PARCEL improves the aggregate
+              retention-efficiency trade-off while remaining compatible with the
+              train-once, deploy-anywhere elastic inference setup.
+            </p>
           </div>
+
+          <figure class="feature-figure">
+            <img
+              src="assets/figures/pareto-tradeoff.png"
+              alt="Aggregate retention-efficiency trade-off for PARCEL."
+            />
+            <figcaption>
+              <strong>Aggregate retention-efficiency trade-off.</strong>
+              PARCEL improves mean retention over 27 benchmarks while scaling
+              cleanly across image and video budgets.
+            </figcaption>
+          </figure>
 
           <div class="results-grid">
-            <article class="results-card">
-              <span class="results-kicker">Image Mean Retention</span>
+            <article class="result-card">
+              <span class="result-label">Image Mean Retention</span>
               <h3>95.1% at 256 tokens</h3>
               <p>
                 PARCEL leads the image aggregate at every reported budget:
                 95.1% at 256, 94.7% at 64, and 86.8% at 16 tokens.
               </p>
             </article>
-            <article class="results-card">
-              <span class="results-kicker">Video Mean Retention</span>
+            <article class="result-card">
+              <span class="result-label">Video Mean Retention</span>
               <h3>98.0% at 256 tokens</h3>
               <p>
                 The video aggregate remains especially strong, with 98.0% at
                 256, 97.9% at 64, and 95.0% at 16 tokens.
               </p>
             </article>
-            <article class="results-card">
-              <span class="results-kicker">RefCOCO Advantage</span>
+            <article class="result-card">
+              <span class="result-label">RefCOCO Advantage</span>
               <h3>Up to +6.1 points over MQT</h3>
               <p>
                 The explicit anchor pathway matters for dense spatial grounding
                 under compression.
               </p>
             </article>
-            <article class="results-card">
-              <span class="results-kicker">Resolution-Sensitive Tasks</span>
+            <article class="result-card">
+              <span class="result-label">Resolution-Sensitive Tasks</span>
               <h3>77.1% retention at 16 tokens</h3>
               <p>
                 PARCEL also reaches 90.0% at 64 tokens and 90.8% at 256 tokens
@@ -413,26 +391,26 @@
             </article>
           </div>
 
-          <div class="benchmark-strip">
-            <article>
-              <span>Routing Ablation</span>
-              <strong>95.6 / 95.3 / 88.3%</strong>
+          <div class="three-up">
+            <article class="info-card">
+              <span class="detail-index">Main Ablation</span>
+              <h3>95.6 / 95.3 / 88.3%</h3>
               <p>
-                The full model wins across 256, 64, and 16 token budgets in the
-                main ablation suite.
+                The full model wins across 256, 64, and 16 token budgets in
+                the main ablation suite.
               </p>
             </article>
-            <article>
-              <span>Why routing matters</span>
-              <strong>83.1% with 16-token pooling only</strong>
+            <article class="info-card">
+              <span class="detail-index">Why routing matters</span>
+              <h3>83.1% with 16-token pooling only</h3>
               <p>
                 Pure pooling hits a hard ceiling when query exploration is
                 removed.
               </p>
             </article>
-            <article>
-              <span>Why PCQR matters</span>
-              <strong>95.6% vs 95.2%</strong>
+            <article class="info-card">
+              <span class="detail-index">Why PCQR matters</span>
+              <h3>95.6% vs 95.2%</h3>
               <p>
                 Pool-aware query conditioning edges out ViT-only query designs
                 at the highest budget.
@@ -441,39 +419,18 @@
           </div>
         </section>
 
-        <section class="section alt reveal">
-          <div class="section-heading">
-            <p class="eyebrow">Abstract</p>
-            <h2>A concise summary for readers landing here first.</h2>
-          </div>
-
-          <div class="abstract-card">
-            <p>
-              Large Vision-Language Models map visual inputs into dense token
-              sequences, creating a quadratic inference bottleneck. PARCEL
-              addresses this with a hybrid visual tokenization architecture that
-              keeps low-frequency layout in pooled spatial anchors while using
-              pool-conditioned elastic queries to recover complementary detail.
-              Across 27 benchmarks, it improves the performance-efficiency
-              Pareto frontier over prior matryoshka baselines while preserving a
-              single-model, multi-budget deployment setup.
-            </p>
-          </div>
-        </section>
-
-        <section id="citation" class="section reveal">
-          <div class="section-heading">
-            <p class="eyebrow">Citation</p>
-            <h2>Ready for a project page and easy to extend later.</h2>
+        <section id="citation" class="section-card reveal">
+          <div class="section-header">
+            <p class="eyebrow">BibTeX</p>
+            <h2>Citation</h2>
           </div>
 
           <div class="citation-layout">
             <div class="citation-copy">
               <p>
-                This version is intentionally GitHub Pages-friendly: plain HTML,
-                CSS, and a small script. When you have a code repository or demo
-                video, you can drop those links into the hero actions without
-                changing the page structure.
+                If you use PARCEL in your research, please cite the paper
+                below. Once the code repository is public, the placeholder
+                button in the masthead can be swapped for the final link.
               </p>
               <button class="button primary copy-button" data-copy-target="bibtex">
                 Copy BibTeX
@@ -491,7 +448,7 @@
       </main>
 
       <footer class="site-footer">
-        <p>Built as a lightweight static site for GitHub Pages deployment.</p>
+        <p>Project page for arXiv:2605.30126.</p>
       </footer>
     </div>
 

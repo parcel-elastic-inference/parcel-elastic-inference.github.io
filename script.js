@@ -1,4 +1,5 @@
 const copyButton = document.querySelector("[data-copy-target]");
+const navLinks = Array.from(document.querySelectorAll(".site-nav a[href^='#']"));
 
 if (copyButton) {
   copyButton.addEventListener("click", async () => {
@@ -26,4 +27,53 @@ if (copyButton) {
       }, 1400);
     }
   });
+}
+
+if (navLinks.length > 0) {
+  const observedSections = navLinks
+    .map((link) => {
+      const selector = link.getAttribute("href");
+      return {
+        link,
+        section: selector ? document.querySelector(selector) : null,
+      };
+    })
+    .filter((item) => item.section);
+
+  const setActiveLink = (id) => {
+    observedSections.forEach(({ link, section }) => {
+      const isActive = section.id === id;
+      link.classList.toggle("active", isActive);
+
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  if (observedSections.length > 0) {
+    setActiveLink(observedSections[0].section.id);
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visibleEntries.length > 0) {
+          setActiveLink(visibleEntries[0].target.id);
+        }
+      },
+      {
+        rootMargin: "-24% 0px -58% 0px",
+        threshold: [0.12, 0.28, 0.45, 0.7],
+      }
+    );
+
+    observedSections.forEach(({ section }) => {
+      sectionObserver.observe(section);
+    });
+  }
 }
