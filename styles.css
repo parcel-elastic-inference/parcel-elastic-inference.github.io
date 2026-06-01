@@ -144,15 +144,6 @@ h3 {
   text-wrap: balance;
 }
 
-.desktop-title-line {
-  display: inline;
-  white-space: nowrap;
-}
-
-.desktop-title-break {
-  display: block;
-}
-
 .authors,
 .affiliations {
   margin: 0 auto;
@@ -567,15 +558,6 @@ h2.single-line-desktop {
 
   .single-line-desktop {
     white-space: normal;
-  }
-
-  .desktop-title-line {
-    display: inline;
-    white-space: normal;
-  }
-
-  .desktop-title-break {
-    display: none;
   }
 }
 
