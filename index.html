@@ -233,13 +233,10 @@
           <div class="section-header">
             <p class="eyebrow">Budget-Aware Routing</p>
             <h2 class="single-line-desktop">
-              The anchor-query split is adjusted as the total token budget changes.
+              The anchor-query split is determined by a piecewise routing strategy.
             </h2>
             <p class="section-lede">
-              PARCEL uses the piecewise routing rule described in the paper:
-              low budgets keep a 4x4 anchor grid, while medium-to-high budgets
-              switch to an 8x8 anchor grid and allocate the remainder to
-              conditioned queries.
+              PARCEL dynamically balances spatial anchoring and semantic exploration based on the available budget, defining two distinct routing regimes without exhausting the allocated tokens.
             </p>
           </div>
 
@@ -251,40 +248,23 @@
               loading="lazy"
             />
             <figcaption>
-              <strong>Budget-aware routing.</strong> PARCEL changes the
-              division between pooled anchors and conditioned queries as the
-              available visual-token budget changes.
+              <strong>Budget-aware piecewise routing.</strong> PARCEL dynamically determines the resolution of the spatial anchor and the number of complementary query tokens based on the budget constraints.
             </figcaption>
           </figure>
 
-          <div class="three-up">
+          <div class="two-up">
             <article class="info-card">
-              <span class="detail-index">A</span>
-              <h3>16 to 63 tokens</h3>
+              <span class="detail-index">16 &le; B &lt; 64 Tokens</span>
+              <h3>Low Budgets</h3>
               <p>
-                PARCEL keeps a fixed <strong>4x4 spatial anchor grid</strong>,
-                yielding 16 pooled anchor tokens. Any remaining budget in this
-                interval is assigned to conditioned queries.
+                Visual features are pooled into a <strong>4x4 spatial anchor grid</strong> to preserve minimal layout, yielding 16 structural tokens. The remaining budget (B - 16) is allocated to pool-conditioned query tokens.
               </p>
             </article>
             <article class="info-card">
-              <span class="detail-index">B</span>
-              <h3>Boundary at 64 tokens</h3>
+              <span class="detail-index">64 &le; B &le; 256 Tokens</span>
+              <h3>Medium-to-High Budgets</h3>
               <p>
-                At the 64-token boundary, the model upgrades the spatial base
-                to an <strong>8x8 spatial anchor grid</strong>. The full
-                budget is used to establish structure, so the query pathway is
-                still inactive at this exact operating point.
-              </p>
-            </article>
-            <article class="info-card">
-              <span class="detail-index">C</span>
-              <h3>65 to 256 tokens</h3>
-              <p>
-                Once the 64-token anchor base is secured, all additional tokens
-                in this interval become <strong>pool-conditioned query
-                tokens</strong>, which recover complementary high-frequency
-                detail beyond the pooled grid.
+                The model upgrades to an <strong>8x8 spatial anchor grid</strong> (64 tokens) for a richer spatial base. Any additional budget (B - 64) is assigned to the complementary query pathway to recover high-frequency details.
               </p>
             </article>
           </div>
