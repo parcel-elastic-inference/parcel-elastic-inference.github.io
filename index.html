@@ -37,13 +37,15 @@
             for Efficient Vision-Language Understanding
           </h1>
           <p class="authors">
-            Selim Kuzucu, Alessio Tonioni, Vasile Lup, Bernt Schiele, Federico
-            Tombari, Muhammad Ferjad Naeem
+            Selim Kuzucu<sup>2,†</sup>, Alessio Tonioni<sup>1</sup>, Vasile
+            Lup<sup>1</sup>, Bernt Schiele<sup>1</sup>, Federico
+            Tombari<sup>1,3</sup>, Muhammad Ferjad Naeem<sup>1</sup>
           </p>
           <p class="affiliations">
-            Max Planck Institute for Informatics · Google · Technical University
-            of Munich
+            <sup>1</sup>Google, <sup>2</sup>Max Planck Institute for
+            Informatics, SIC, <sup>3</sup>Technical University of Munich
           </p>
+          <p class="author-note"><sup>†</sup>Work done while interning at Google.</p>
 
           <div class="action-row">
             <a
@@ -63,7 +65,6 @@
               arXiv HTML
             </a>
             <a class="button" href="#citation">BibTeX</a>
-            <span class="button ghost" aria-disabled="true">Code soon</span>
           </div>
         </section>
 
@@ -221,14 +222,15 @@
 
           <figure class="feature-figure">
             <img
-              src="assets/figures/parcel-architecture.png"
-              alt="High-level overview of the PARCEL architecture."
+              src="assets/pdf-figures/pcqr-teaser.png"
+              alt="High-level overview of the Pool-Conditioned Query Resampling block in PARCEL."
             />
             <figcaption>
-              <strong>Architecture overview.</strong> Uncompressed visual
-              features are pooled into 2D anchors, then used to condition
-              elastic queries that become targeted semantic explorers over the
-              full-resolution feature grid.
+              <strong>PCQR block and architecture flow.</strong> Visual
+              features are first pooled into deterministic 2D anchors, then the
+              remaining token budget is routed into conditioned queries that
+              attend back to the full-resolution ViT features as targeted
+              semantic explorers.
             </figcaption>
           </figure>
         </section>
@@ -238,9 +240,10 @@
             <p class="eyebrow">Budget-Aware Routing</p>
             <h2>The anchor-query split is adjusted as the total token budget changes.</h2>
             <p class="section-lede">
-              PARCEL does not keep a fixed compression recipe across all
-              budgets. Instead, it redistributes capacity between spatial
-              anchors and elastic queries as the available token count changes.
+              PARCEL uses the piecewise routing rule described in the paper:
+              low budgets keep a 4×4 anchor grid, while medium-to-high budgets
+              switch to an 8×8 anchor grid and allocate the remainder to
+              conditioned queries.
             </p>
           </div>
 
@@ -253,36 +256,39 @@
             />
             <figcaption>
               <strong>Budget-aware routing.</strong> PARCEL changes the
-              division between pooled anchors and query tokens as the available
-              visual-token budget changes.
+              division between pooled anchors and conditioned queries as the
+              available visual-token budget changes.
             </figcaption>
           </figure>
 
           <div class="three-up">
             <article class="info-card">
               <span class="detail-index">A</span>
-              <h3>At 16 tokens</h3>
+              <h3>16 to 63 tokens</h3>
               <p>
-                The model falls back to a severe anchor budget and preserves a
-                usable compressed visual base even in the tightest setting.
+                PARCEL keeps a fixed <strong>4×4 spatial anchor grid</strong>,
+                yielding 16 pooled anchor tokens. Any remaining budget in this
+                interval is assigned to conditioned queries.
               </p>
             </article>
             <article class="info-card">
               <span class="detail-index">B</span>
-              <h3>At 64 tokens</h3>
+              <h3>Boundary at 64 tokens</h3>
               <p>
-                PARCEL expands the anchor so query capacity is not wasted
-                reconstructing structure that could have been preserved
-                directly.
+                At the 64-token boundary, the model upgrades the spatial base
+                to an <strong>8×8 anchor lattice</strong>. The full budget is
+                used to establish structure, so the query pathway is still
+                inactive at this exact operating point.
               </p>
             </article>
             <article class="info-card">
               <span class="detail-index">C</span>
-              <h3>At 256 tokens</h3>
+              <h3>65 to 256 tokens</h3>
               <p>
-                Once the anchor base is sufficiently rich, semantic explorer
-                queries activate on top to recover complementary fine-grained
-                information.
+                Once the 64-token anchor base is secured, all additional tokens
+                in this interval become <strong>pool-conditioned query
+                tokens</strong>, which recover complementary high-frequency
+                detail beyond the pooled grid.
               </p>
             </article>
           </div>
@@ -295,38 +301,40 @@
             <p class="section-lede">
               The architecture is not only intuitive at the design level; its
               anchor-query decomposition is also reflected in measurable
-              spectral behavior.
+              spectral behavior on ChartQA samples.
             </p>
           </div>
 
           <div class="two-up">
             <figure class="feature-figure">
               <img
-                src="assets/figures/baseband-concentration.png"
+                src="assets/pdf-figures/fig-phase2-cdf-64tok.png"
                 alt="Baseband concentration plot from the paper."
               />
               <figcaption>
                 <strong>Baseband concentration.</strong> PARCEL concentrates
                 compressed spatial tokens in the low frequencies more cleanly
-                than M<sup>3</sup>.
+                than M<sup>3</sup> on ChartQA samples, indicating a cleaner
+                low-frequency baseband for spatial anchoring.
               </figcaption>
             </figure>
             <figure class="feature-figure">
               <img
-                src="assets/figures/spectral-decoupling.png"
+                src="assets/pdf-figures/fig-phase3-256tok.png"
                 alt="Spectral decoupling figure from the paper."
               />
               <figcaption>
                 <strong>Spectral disentanglement.</strong> On ChartQA, the pool
                 tokens capture layout while the query pathway keeps access to
-                higher-frequency detail.
+                higher-frequency detail beyond the pooled grid.
               </figcaption>
             </figure>
           </div>
 
           <div class="quote-band">
             <p>
-              On ChartQA, this separation aligns with gains of
+              These visualizations are drawn from ChartQA samples, and the same
+              separation is reflected in downstream performance gains of
               <strong>+4.7 points at 64 tokens</strong> and
               <strong>+3.4 points at 256 tokens</strong> over M<sup>3</sup>.
             </p>
@@ -344,17 +352,75 @@
             </p>
           </div>
 
-          <figure class="feature-figure">
-            <img
-              src="assets/figures/pareto-tradeoff.png"
-              alt="Aggregate retention-efficiency trade-off for PARCEL."
-            />
-            <figcaption>
-              <strong>Aggregate retention-efficiency trade-off.</strong>
-              PARCEL improves mean retention over 27 benchmarks while scaling
-              cleanly across image and video budgets.
-            </figcaption>
-          </figure>
+          <div class="results-hero">
+            <figure class="feature-figure compact-figure">
+              <img
+                src="assets/pdf-figures/compact-efficiency-landscape.png"
+                alt="Aggregate retention-efficiency trade-off for PARCEL."
+              />
+              <figcaption>
+                <strong>Aggregate retention-efficiency trade-off.</strong>
+                PARCEL improves mean retention over 27 benchmarks while scaling
+                cleanly across image and video budgets.
+              </figcaption>
+            </figure>
+
+            <aside class="efficiency-panel" aria-label="Compact efficiency table">
+              <p class="efficiency-title">Compact Efficiency Table</p>
+              <div class="efficiency-grid">
+                <p>Budget</p>
+                <p>Image FLOPs</p>
+                <p>Video FLOPs</p>
+                <p>Image KV</p>
+                <p>Video KV</p>
+
+                <p><strong>16</strong></p>
+                <p>1.0T</p>
+                <p>4.9T</p>
+                <p>15MB</p>
+                <p>33MB</p>
+
+                <p><strong>64</strong></p>
+                <p>1.2T</p>
+                <p>8.2T</p>
+                <p>20MB</p>
+                <p>111MB</p>
+
+                <p><strong>256</strong></p>
+                <p>2.0T</p>
+                <p>24.3T</p>
+                <p>39MB</p>
+                <p>423MB</p>
+              </div>
+            </aside>
+          </div>
+
+          <div class="spotlight-grid">
+            <article class="spotlight-card">
+              <span class="result-label">Dense Grounding</span>
+              <h3>Up to +6.1 points over MQT</h3>
+              <p>
+                Across the RefCOCO suite, PARCEL keeps explicit spatial anchors
+                and reaches its largest retention advantage at 64 tokens.
+              </p>
+            </article>
+            <article class="spotlight-card">
+              <span class="result-label">ChartQA Gains</span>
+              <h3>+4.7 at 64 and +3.4 at 256</h3>
+              <p>
+                The spectral separation seen on ChartQA samples is reflected in
+                concrete gains on resolution-sensitive chart reasoning.
+              </p>
+            </article>
+            <article class="spotlight-card">
+              <span class="result-label">Ablation Peak</span>
+              <h3>95.6 / 95.3 / 88.3%</h3>
+              <p>
+                In the 27-benchmark main ablation suite, the full PARCEL design
+                achieves the strongest retention at 256, 64, and 16 tokens.
+              </p>
+            </article>
+          </div>
 
           <div class="results-grid">
             <article class="result-card">
@@ -429,8 +495,7 @@
             <div class="citation-copy">
               <p>
                 If you use PARCEL in your research, please cite the paper
-                below. Once the code repository is public, the placeholder
-                button in the masthead can be swapped for the final link.
+                below.
               </p>
               <button class="button primary copy-button" data-copy-target="bibtex">
                 Copy BibTeX
