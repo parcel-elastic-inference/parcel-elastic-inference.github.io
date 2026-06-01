@@ -67,8 +67,8 @@ if (navLinks.length > 0) {
         }
       },
       {
-        rootMargin: "-24% 0px -58% 0px",
-        threshold: [0.12, 0.28, 0.45, 0.7],
+        rootMargin: "-120px 0px -10% 0px",
+        threshold: [0, 0.2, 0.4, 0.6, 0.8, 1],
       }
     );
 

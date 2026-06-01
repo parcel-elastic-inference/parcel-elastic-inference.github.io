@@ -387,8 +387,8 @@ h2.single-line-desktop {
 }
 
 .results-hero {
-  grid-template-columns: minmax(0, 0.82fr) auto;
-  align-items: start;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
 }
 
 .compact-figure {
@@ -397,10 +397,8 @@ h2.single-line-desktop {
 }
 
 .efficiency-panel {
-  justify-self: start;
-  width: max-content;
-  max-width: 100%;
-  padding: 0.82rem 0.95rem;
+  width: 100%;
+  padding: 1.5rem 1.8rem;
   border: 1px solid var(--line);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.72);
@@ -418,8 +416,8 @@ h2.single-line-desktop {
 
 .efficiency-grid {
   display: grid;
-  grid-template-columns: repeat(5, max-content);
-  gap: 0.2rem 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.6rem 1rem;
   color: var(--muted);
   font-size: 1.12rem;
   line-height: 1.45;
@@ -428,6 +426,11 @@ h2.single-line-desktop {
 .efficiency-grid p {
   margin: 0;
   white-space: nowrap;
+  text-align: center;
+}
+
+.efficiency-grid p:nth-child(5n + 1) {
+  text-align: left;
 }
 
 .efficiency-grid p:nth-child(-n + 5) {
