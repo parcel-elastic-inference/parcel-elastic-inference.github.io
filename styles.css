@@ -159,8 +159,9 @@ h3 {
   color: var(--muted);
 }
 
+
 .authors {
-  font-size: 1.35rem; 
+  font-size: 1.45rem; /* Bumped up from 1.35rem */
   font-weight: 600;
 }
 
@@ -178,7 +179,7 @@ h3 {
 
 .affiliations {
   margin-top: 0.35rem;
-  font-size: 1.15rem; 
+  font-size: 1.25rem; /* Bumped up from 1.15rem */
   font-weight: 600;
 }
 
@@ -616,6 +617,11 @@ h2.single-line-desktop {
   }
 
   .authors {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
   }
+
+  .affiliations {
+    font-size: 1.1rem;
+  }
+
 }
