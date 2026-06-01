@@ -165,19 +165,16 @@
         </section>
 
         <section id="method" class="section-card reveal">
-          <div class="section-header">
+          <div class="section-header wider-copy">
             <p class="eyebrow">Method</p>
             <h2>
-              Pool-Conditioned Query Resampling conditions elastic queries
-              <br class="desktop-break" />
-              on pooled spatial anchors.
+              Pool-Conditioned Query Resampling conditions elastic queries on
+              pooled spatial anchors.
             </h2>
             <p class="section-lede">
               The pooled anchor branch preserves low-frequency layout first, so
               the query pathway can spend its capacity on complementary visual
-              detail
-              <br class="desktop-break" />
-              rather than reconstructing coarse structure from scratch.
+              detail rather than reconstructing coarse structure from scratch.
             </p>
           </div>
 
@@ -317,7 +314,7 @@
           </div>
 
           <div class="two-up">
-            <figure class="feature-figure">
+            <figure class="feature-figure analysis-figure">
               <img
                 src="assets/pdf-figures-hq/fig_phase2_cdf_64tok.pdf.png"
                 alt="Baseband concentration plot from the paper."
@@ -329,7 +326,7 @@
                 low-frequency baseband for spatial anchoring.
               </figcaption>
             </figure>
-            <figure class="feature-figure">
+            <figure class="feature-figure analysis-figure">
               <img
                 src="assets/pdf-figures-hq/fig_phase3_256tok.pdf.png"
                 alt="Spectral decoupling figure from the paper."
@@ -377,7 +374,7 @@
             </figure>
 
             <aside class="efficiency-panel" aria-label="Compact efficiency table">
-              <p class="efficiency-title">Compact Efficiency Table</p>
+              <p class="efficiency-title">Visual Tokens versus Resources</p>
               <div class="efficiency-grid">
                 <p>Budget</p>
                 <p>Image FLOPs</p>
@@ -408,45 +405,57 @@
 
           <div class="spotlight-grid">
             <article class="spotlight-card">
-              <span class="result-label">Image Aggregate</span>
-              <h3>95.1 / 94.7 / 86.8% retention</h3>
+              <span class="result-label">Dense Recognition</span>
+              <h3>Up to +6.1 over MQT</h3>
               <p>
-                Across the image aggregate, PARCEL leads all reported budgets:
-                95.1% at 256 tokens, 94.7% at 64, and 86.8% at 16.
+                Across the RefCOCO suite, PARCEL keeps explicit spatial anchors
+                and reaches its largest retention advantage at 64 tokens, while
+                also improving by up to +8.9 points over M<sup>3</sup>.
               </p>
             </article>
             <article class="spotlight-card">
               <span class="result-label">Video Aggregate</span>
-              <h3>98.0 / 97.9 / 95.0% retention</h3>
+              <h3>Up to +5.4 over M<sup>3</sup></h3>
               <p>
-                The video aggregate remains especially strong, and on the
-                top-3 most compression-sensitive video tasks PARCEL reaches
-                92.8% at 16 tokens versus 91.1% for MQT and 88.8% for M<sup>3</sup>.
+                PARCEL reaches 98.0%, 97.9%, and 95.0% retention on the video
+                aggregate, with its largest margin appearing at the 64-token
+                budget.
               </p>
             </article>
             <article class="spotlight-card">
-              <span class="result-label">Dense Grounding</span>
-              <h3>Up to +6.1 points over MQT</h3>
-              <p>
-                Across the RefCOCO suite, PARCEL keeps explicit spatial anchors
-                and reaches its largest retention advantage at 64 tokens.
-              </p>
-            </article>
-            <article class="spotlight-card">
-              <span class="result-label">ChartQA and DocVQA</span>
-              <h3>90.8 / 90.0 / 77.1% retention</h3>
+              <span class="result-label">Resolution-Sensitive</span>
+              <h3>Up to +8.4 over M<sup>3</sup></h3>
               <p>
                 On the top-3 resolution-sensitive tasks, including ChartQA and
-                DocVQA, PARCEL improves over baselines at 256, 64, and 16
-                tokens.
+                DocVQA, PARCEL reaches 90.8%, 90.0%, and 77.1% retention
+                across 256, 64, and 16 tokens.
               </p>
             </article>
             <article class="spotlight-card">
-              <span class="result-label">ChartQA Gains</span>
-              <h3>+4.7 at 64 and +3.4 at 256</h3>
+              <span class="result-label">ChartQA (Human)</span>
+              <h3>Up to +3.4 over M<sup>3</sup></h3>
               <p>
-                The spectral separation seen on ChartQA samples is reflected in
-                concrete gains on chart reasoning over M<sup>3</sup>.
+                PARCEL reaches 37.2 at 256 tokens, 37.0 at 64, and 32.0 at 16,
+                consistently improving over both elastic baselines on this
+                chart-reasoning benchmark.
+              </p>
+            </article>
+            <article class="spotlight-card">
+              <span class="result-label">DocVQA (Val)</span>
+              <h3>Up to +3.4 over M<sup>3</sup></h3>
+              <p>
+                On document question answering, PARCEL reaches 32.1 at 64
+                tokens and 26.1 at 16, improving over the baselines in the
+                compression-sensitive regime.
+              </p>
+            </article>
+            <article class="spotlight-card">
+              <span class="result-label">MSR-VTT-Cap</span>
+              <h3>Up to +5.5 over M<sup>3</sup></h3>
+              <p>
+                On this key video-captioning benchmark, PARCEL improves from
+                68.6 at 256 tokens to 68.9 at 64 and still holds 66.7 at 16,
+                outperforming both elastic baselines.
               </p>
             </article>
           </div>
