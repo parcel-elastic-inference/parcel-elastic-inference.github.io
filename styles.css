@@ -136,7 +136,7 @@ h3 {
 
 .paper-title-main {
   max-width: 1160px;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.8rem;
   font-size: clamp(2.4rem, 4.5vw, 4rem); 
   line-height: 1.02;
   font-weight: 600;
@@ -159,9 +159,8 @@ h3 {
   color: var(--muted);
 }
 
-
 .authors {
-  font-size: 1.45rem; /* Bumped up from 1.35rem */
+  font-size: 1.45rem; 
   font-weight: 600;
 }
 
@@ -179,7 +178,7 @@ h3 {
 
 .affiliations {
   margin-top: 0.35rem;
-  font-size: 1.25rem; /* Bumped up from 1.15rem */
+  font-size: 1.25rem; 
   font-weight: 600;
 }
 
@@ -469,6 +468,18 @@ h2.single-line-desktop {
   margin-top: 1.25rem;
 }
 
+.spotlight-grid.bottom-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.15rem;
+  margin-top: 1.15rem; 
+}
+
+.spotlight-grid.bottom-row .spotlight-card {
+  flex: 0 1 calc(33.333% - 0.77rem); 
+  width: 100%;
+}
+
 .spotlight-card {
   padding: 1.2rem 1.25rem;
   border: 1px solid rgba(29, 95, 140, 0.18);
@@ -582,6 +593,14 @@ h2.single-line-desktop {
     grid-template-columns: 1fr;
   }
 
+  .spotlight-grid.bottom-row {
+    flex-direction: column;
+  }
+  
+  .spotlight-grid.bottom-row .spotlight-card {
+    max-width: 100%;
+  }
+
   .single-line-desktop {
     white-space: normal;
   }
@@ -621,7 +640,6 @@ h2.single-line-desktop {
   }
 
   .affiliations {
-    font-size: 1.1rem;
+    font-size: 1.1rem; 
   }
-
 }
